@@ -5,12 +5,12 @@ We present an **automated agent** that replicates and extends the method from Im
 Due to the OpenAI API’s limitation on file uploads, we convert code files to string format. Surprisingly, converting the code to strings and sending it via API can be more precise than using ChatGPT’s interface directly.
 
 ## Semantic Extension
-A key contribution of our implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `semantic_analysis_mut.txt`. With this guidance, the model tends to generate clearer function and variable names, stick to a consistent style, and avoid vague or inappropriate labels. For now, this semantic information is passed in plain text—but it could later be replaced with structured data from static analysis tools.
+A key contribution of our implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `prompts/semantic_analysis_mut.txt`. With this guidance, the model tends to generate clearer function and variable names, stick to a consistent style, and avoid vague or inappropriate labels. For now, this semantic information is passed in plain text—but it could later be replaced with structured data from static analysis tools.
 
 ## Transformation Procedure
 Our prompting strategy follows the same iterative design as the original work. We apply a sequence of prompt-based transformations to unit tests, one step at a time. The output from each transformation serves as the input for the next:
 > 🔁 Apply prompts → Regenerate test file → Extract new test cases → Apply next prompt
-All transformations are defined in all_changes.txt, where each block (separated by blank lines) corresponds to a specific transformation.
+All transformations are defined in `prompts/all_changes.txt`, where each block (separated by blank lines) corresponds to a specific transformation.
 The following transformations are applied in order:
 - Literal Extraction: Extracting repeated literals or magic values into named constants.
 - Structure Segmentation: Separating test logic into # Arrange, # Act, and # Assert sections.

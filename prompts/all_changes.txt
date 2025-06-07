@@ -1,0 +1,15 @@
+Extract repeated literals or magic values into named constants (in lowercase_snake_case), declared at the top of the test function body.
+
+Separate the test into clearly labelled # Arrange, # Act, and # Assert sections
+
+Collapse equivalent dict-level asserts into a single deep-equality assert; delete duplicate field-by-field checks that add no extra guarantee.
+
+Rename each test to “test_<action><object>[<condition>]”, use ≤ 5 words; avoid generic or vogue nouns like "case", "check". Do not change the number of test cases. Don't add other test functionality.
+
+Rename local variables to reflect their functional roles or semantic meaning, also in snake_case, shorten variable names to the essential noun; omit redundant prefixes already present in function name. Example: session_name_cookie → cookie_session, header_user_agent → ua_header. Reuse a variable name only for the same semantic role within the same test; otherwise create a new, clearly named variable.
+
+Remove assignment that not be used.
+
+Add comments guided following instructions:
+Begin each test with a one-line comment: “Intent: <behaviour being validated>”; internal comments should explain rationale, not restate code.
+Ensure every assertion group has a 1-line comment stating what is being verified; forbid multi-line banner comments unless providing background.

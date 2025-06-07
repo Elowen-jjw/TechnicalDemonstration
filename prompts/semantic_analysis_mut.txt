@@ -1,0 +1,24 @@
+Please consider the following semantic and structural information extracted from the Python module(s) to help you better understand the code's behavior and improve the readability of the following test cases.
+
+CONTROL_FLOW_LANDMARKS:
+- BRANCHES_AND_LOOPS: if / while / for
+- JOIN_POINTS: merge points after conditional branches
+- FUNCTION_BOUNDARIES: function entry and exit lines
+- NESTING_DEPTH: depth of each control structure (0 = top-level, 1+ = nested)
+
+DATA_FLOW_CHAINS:
+- DEF_USE_LINKS: variable definition → usage chains (supports cross-function/module)
+- FLOW_FROM_SOURCES: values originating from parameters or external input
+- FLOW_TO_SINKS: values flowing into returns, external calls, or exception guards
+
+STATEMENT_PURPOSE_TAGS:
+- ASSIGN: state update (e.g., x = f(y))
+- RETURN: function output
+- CALL: helper or API invocation
+- ASSERT: correctness enforcement (e.g., assert x > 0)
+- RAISE: active error signaling (e.g., raise ValueError)
+- TRY_EXCEPT: exception handling and recovery
+
+VARIABLE_ROLE_AND_TYPE_HINTS:
+- ROLES: computation | control_flag | state_field | temp | resource_handle | argument
+- TYPES: int | float | bool | str | list | tuple | set | dict | NoneType | CustomClass
