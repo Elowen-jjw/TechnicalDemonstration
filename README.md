@@ -1,54 +1,58 @@
-### Technical Demonstration: Automated Test Readability Enhancement
+# Technical Demonstration: Automated Test Readability Enhancement
 
-We **implement an automated agent** that replicates and extends the approach from Improving Test Code Readability with LLMs. The original work uses manual prompts through ChatGPT to rewrite test code for better readability. In contrast, our implementation automates this process end-to-end using the OpenAI API (GPT-4o), without requiring user interaction. Because the openai api can not support file upload, in this automation work, we parse it transferred to the str code, in some extent, this method is more accurate than through
-the ChatGPT interface with the Code Interpreter plug-in. 
+We present an **automated agent** that replicates and extends the method from Improving Test Code Readability with LLMs. While the original approach relies on manual prompting in ChatGPT, our system automates the entire process using the OpenAI API (GPT-4o), enabling fully hands-free test enhancement.
 
-**As an extension to the original work, we provide the LLM with semantic information (i.e. control flow, data flow, statement purposes and variable types and roles) about the module-under-test, detailed in an additional prompt `semantic_analysis_mut.txt`. This helps the model avoid misleading or overly generic names during renaming and improves consistency across transformations. While this semantic guidance is currently represented textually, future work could integrate structured representations extracted via static analysis.** 
+Due to the OpenAI API’s limitation on file uploads, we convert code files to string format. Surprisingly, converting the code to strings and sending it via API can be more precise than using ChatGPT’s interface directly.
 
-The prompting structures is mostly identical to the original work. We iteratively applies a sequence of readability transformations to unit tests, guided by prompt instructions. This means:
-> 🔁 Sequentially apply prompts → regenerate test file → extract new test cases → apply next prompt
-Each transformation is defined in a text file `all_changes.txt`, where blocks are separated by blank lines and executed in order. These transformations include:
-- Extracting repeated literals or magic values into named constants.
-- Separating test logic into # Arrange, # Act, and # Assert sections.
-- Merging redundant field-by-field assertions into deep equality checks.
-- Renaming tests to be concise and self-descriptive.
-- Renaming local variables to reflect semantic roles.
-- Removing unused assignments.
-- Adding clear inline comments and an intent header at the top of each test.
+## Semantic Extension
+A key contribution of our implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `semantic_analysis_mut.txt`. With this guidance, the model tends to generate clearer function and variable names, stick to a consistent style, and avoid vague or inappropriate labels. For now, this semantic information is passed in plain text—but it could later be replaced with structured data from static analysis tools.
 
-After one tranformation, one output file will be saved in `improved_test_suites/`, making it easy to inspect the effect of each transformation in isolation.
+## Transformation Procedure
+Our prompting strategy follows the same iterative design as the original work. We apply a sequence of prompt-based transformations to unit tests, one step at a time. The output from each transformation serves as the input for the next:
+> 🔁 Apply prompts → Regenerate test file → Extract new test cases → Apply next prompt
+All transformations are defined in all_changes.txt, where each block (separated by blank lines) corresponds to a specific transformation.
+The following transformations are applied in order:
+- Literal Extraction: Extracting repeated literals or magic values into named constants.
+- Structure Segmentation: Separating test logic into # Arrange, # Act, and # Assert sections.
+- Assertion Merging: Merging redundant field-by-field assertions into deep equality checks.
+- Function Renaming: Renaming test function to be concise and self-descriptive.
+- Variable Renaming: Renaming local variables to reflect semantic roles.
+- Dead Code Removal: Removing unused assignments.
+- Comment Enhancement: Add an intent comment at the top and concise inline comments to clarify logic.
+
+After each tranformation, the output is saved to `improved_test_suites/`, making it easy to inspect the effect of individual transformations.
 
 ## Usage
 
 | Argument         | Description                                                  |
 |------------------|--------------------------------------------------------------|
 | `--modules`      | Python files of the modules under test (supports multiple)   |
-| `--test`         | The initial test file                                        |
+| `--test`         | The initial test suites                                      |
 | `--changes_file` | A text file where each paragraph is a transformation prompt  |
 | `--semantics`    | A prompt file describing semantic information of the modules |
 | `--output_dir`   | Directory for saving outputs after each transformation step  |
 
 Run `agent_runner.py` with the parameters below, or directly use `overall.py` to execute a preconfigured demonstration. The script will automatically apply each transformation step-by-step and generate refined test suites.
 
-## Results samples:
+## Example Results:
 
-For `test_string_utils_validation.py`: it shows the same function generated by our extension and initial work, respectively, marked as `Version 1` and `Version 2`. 
+For `test_string_utils_validation.py`, we compare results from the original method and our extended agent-based version. Codes below show the same test case (`Version 1` = enhanced, `Version 2` = original):
 <img width="1173" alt="image" src="https://github.com/user-attachments/assets/ca4f86d0-c3d0-4d8b-9866-bc2f57f42aef" />
 
 <img width="1217" alt="image" src="https://github.com/user-attachments/assets/c38e7ec0-df31-4e3c-91d5-1f23af960f4c" />
 
-For `test_httpie_sessions.py`: it shows the same function generated by our extension and initial work, respectively, marked as `Version 1` and `Version 2`. 
+For `test_httpie_sessions.py`, the contrast is similarly shown:
 <img width="1151" alt="image" src="https://github.com/user-attachments/assets/64788450-0d47-4594-9b77-18491a5f4589" />
 
 <img width="978" alt="image" src="https://github.com/user-attachments/assets/abede99d-e7c1-4333-8766-59b7f64576b6" />
 
-The comparison is following, showing our extension makes sense.
+The summary comparison is as follows:
 | Aspect         | Version 1                            | Version 2                        | Comparison Result     |
 |----------------|--------------------------------------|----------------------------------|------------------------|
 | Readability    | ✅ Clearly segmented, intent stated   | ❌ Mixed structure, no intent    | Significant improvement |
 | Naming Clarity | ✅ Descriptive and easy to follow     | ❌ Vague or templated            | Noticeable enhancement |
 | Comment Quality| ✅ Clear intent and organized notes   | ❌ Sparse or code-repeating comments | Better structure     |
 
-Unfortunately, for `test_queue_example.py`, the test readability don not have considerable unhancement.
+However, for `test_queue_example.py`, the agent did not yield significant improvements in readability, likely due to the test’s simple structure or limited room for enhancement.
 
 
