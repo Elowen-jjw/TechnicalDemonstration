@@ -1,18 +1,16 @@
 ## Some Unsuccessful Attempts
 
-I tried several rules to improve test structure:
+I tried several rules to improve test structure.
 
 ### Test Splitting
-- I split tests if they had many assertions (≥5) or were too long (>60 lines).   
+- I splitted tests if they had many assertions (≥5) or were too long (>60 lines).   
 
 ### Code Flattening
 - Inlined simple helper calls  
 - Simplified nested `if-else` logic
 
 ### Assertion Grouping and Formatting
-- Grouped assertions by what they tested  
-- Added spacing between logical blocks  
-- Fixed formatting for better readability
+- Grouped assertions by what they tested 
 
 ### Test Hygiene
 - Replaced hardcoded file paths and URLs with parameters  
@@ -20,14 +18,11 @@ I tried several rules to improve test structure:
 - Added type hints to unclear fixture inputs
 
 ### Exception Handling
-- Replaced `xfail` with `pytest.raises(...)`  
-- Added message checks for better clarity
+- Replaced `xfail` with `pytest.raises(...)` and added message checks
 
-### Comments
-Focused on:
-- What the test checks (intent)  
-- Why some setups exist  
-Avoided repeating what the code already says.
+### Comments 
+- Why some setups exist
+- Avoided repeating what the code already says.
 
 **However, most tests did not get significantly better**:
 - Too much splitting actually hurt clarity. Each test often checks one clear goal, so breaking it apart made the logic harder to follow.
