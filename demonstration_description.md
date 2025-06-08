@@ -34,6 +34,8 @@ After each tranformation, the output is saved to `improved_test_suites/`, making
 
 Run `agent_runner.py` with the parameters below, or directly use `overall.py` to execute a preconfigured demonstration. The script will automatically apply each transformation step-by-step and generate refined test suites.
 
+⚠️ **Note:** Before running the script, you need to set your OpenAI API key by editing the `agent_runner.py` file or by setting the `OPENAI_API_KEY` environment variable.
+
 ## Example Results:
 
 For `test_string_utils_validation.py`, we compare results from the original method and our extended agent-based version. Codes below show the same test case (`Version 1` = enhanced, `Version 2` = original):
