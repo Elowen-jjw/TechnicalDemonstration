@@ -20,7 +20,7 @@ The following transformations are applied in order:
 - Dead Code Removal: Removing unused assignments.
 - Comment Enhancement: Add an intent comment at the top and concise inline comments to clarify logic.
 
-After each tranformation, the output is saved to `improved_test_suites/`, making it easy to inspect the effect of individual transformations.
+After each transformation, the output is saved to `improved_test_suites/`, making it easy to inspect the effect of individual transformations.
 
 ## Usage
 
@@ -38,7 +38,7 @@ Run `agent_runner.py` with the parameters below, or directly use `overall.py` to
 
 ## Example Results:
 
-For `test_string_utils_validation.py`, we compare results from the original method and our extended agent-based version. Codes below show the same test case (`Version 1` = enhanced, `Version 2` = original):
+For `test_string_utils_validation.py`, we compare results from the original method and our extended agent-based version. The codes below show the same test case (`Version 1` = improved, `Version 2` = original):
 <img width="1173" alt="image" src="https://github.com/user-attachments/assets/ca4f86d0-c3d0-4d8b-9866-bc2f57f42aef" />
 
 <img width="1217" alt="image" src="https://github.com/user-attachments/assets/c38e7ec0-df31-4e3c-91d5-1f23af960f4c" />
