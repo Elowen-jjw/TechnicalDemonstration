@@ -1,11 +1,11 @@
 # Technical Demonstration: Automated Test Readability Enhancement
 
-We present an **automated agent** that replicates and extends the method from Improving Test Code Readability with LLMs. While the original approach relies on manual prompting in ChatGPT, our system automates the entire process using the OpenAI API (GPT-4o), enabling fully hands-free test enhancement.
+We built an **automated agent** that replicates and extends the method from Improving Test Code Readability with LLMs. While the original method involves manual prompt engineering in ChatGPT, our version automates the full process using the OpenAI API (GPT-4o), making the workflow entirely hands-free.
 
-Due to the OpenAI API’s limitation on file uploads, we convert code files to string format. Surprisingly, converting the code to strings and sending it via API can be more precise than using ChatGPT’s interface directly.
+Due to limitations with OpenAI API's file upload capabilities, we send code files as strings. Interestingly, string-based input via API proved more stable and precise than directly pasting code into the ChatGPT interface.
 
 ## Semantic Extension
-A key contribution of our implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `prompts/semantic_analysis_mut.txt`. With this guidance, the model tends to generate clearer function and variable names, stick to a consistent style, and avoid vague or inappropriate labels. For now, this semantic information is passed in plain text—but it could later be replaced with structured data from static analysis tools.
+A key contribution of our implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `prompts/semantic_analysis_mut.txt`. With this extra guidance, the model tends to generate clearer function and variable names, stick to a consistent style, and avoid vague or inappropriate labels. For now, this semantic information is passed in plain text—but it could later be replaced with structured data from static analysis tools.
 
 ## Transformation Procedure
 Our prompting strategy follows the same iterative design as the original work. We apply a sequence of prompt-based transformations to unit tests, one step at a time. The output from each transformation serves as the input for the next:
@@ -55,6 +55,6 @@ The summary comparison is as follows:
 | Naming Clarity | ✅ Descriptive and easy to follow     | ❌ Vague or templated            | Noticeable enhancement |
 | Comment Quality| ✅ Clear intent and organized notes   | ❌ Sparse or code-repeating comments | Better structure     |
 
-However, for `test_queue_example.py`, the agent did not yield significant improvements in readability, likely due to the test’s simple structure or limited room for enhancement.
+However, for `test_queue_example.py`, the agent did not yield significant improvements in readability, likely due to the simple structure of the test or limited room for enhancement.
 
 
