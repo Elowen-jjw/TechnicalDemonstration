@@ -1,6 +1,7 @@
 # Technical Demonstration: Automated Test Readability Enhancement
 
 The full source code and documentation are available at: [https://github.com/Elowen-jjw/TechnicalDemonstration](https://github.com/Elowen-jjw/TechnicalDemonstration) 
+
 This repository includes:
 - my full implementation of an automated pipeline for improving test readability using ChatGPT
 - the improved test suites
