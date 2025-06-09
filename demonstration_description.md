@@ -1,5 +1,12 @@
 # Technical Demonstration: Automated Test Readability Enhancement
 
+The full source code and documentation are available at: [https://github.com/Elowen-jjw/TechnicalDemonstration](https://github.com/Elowen-jjw/TechnicalDemonstration) 
+This repository includes:
+- my full implementation of an automated pipeline for improving test readability using ChatGPT
+- the improved test suites
+- some notes of transformations that didn’t work as expected
+- a new idea inspired by the professor’s original approach
+
 We built an **automated agent** that replicates and extends the method from Improving Test Code Readability with LLMs. While the original method involves manual prompt engineering in ChatGPT, our version automates the full process using the OpenAI API (GPT-4o), making the workflow entirely hands-free.
 
 Due to limitations with OpenAI API's file upload capabilities, we send code files as strings. Interestingly, string-based input via API proved more stable and precise than directly pasting code into the ChatGPT interface.
