@@ -39,25 +39,29 @@ Run `agent_runner.py` with the parameters below, or directly use `overall.py` to
 ## Example Results:
 
 For `test_string_utils_validation.py`, we compare results from the original method and our extended agent-based version. The codes below show the same test case (`Version 1` = improved, `Version 2` = original):
-Version 1:
+
+# Version 1:
 <img width="1173" alt="image" src="https://github.com/user-attachments/assets/ca4f86d0-c3d0-4d8b-9866-bc2f57f42aef" />
 
-Version 2:
+# Version 2:
 <img width="1217" alt="image" src="https://github.com/user-attachments/assets/c38e7ec0-df31-4e3c-91d5-1f23af960f4c" />
 
 For `test_httpie_sessions.py`, the contrast is similarly shown:
-Version 1:
+
+# Version 1:
 <img width="1151" alt="image" src="https://github.com/user-attachments/assets/64788450-0d47-4594-9b77-18491a5f4589" />
 
-Version 2:
+# Version 2:
 <img width="978" alt="image" src="https://github.com/user-attachments/assets/abede99d-e7c1-4333-8766-59b7f64576b6" />
 
-The summary comparison is as follows:
-| Aspect         | Version 1                            | Version 2                        | Comparison Result     |
-|----------------|--------------------------------------|----------------------------------|------------------------|
-| Readability    | ✅ Clearly segmented, intent stated   | ❌ Mixed structure, no intent    | Significant improvement |
-| Naming Clarity | ✅ Descriptive and easy to follow     | ❌ Vague or templated            | Noticeable enhancement |
-| Comment Quality| ✅ Clear intent and organized notes   | ❌ Sparse or code-repeating comments | Better structure     |
+# The summary comparison is as follows:
+| Aspect                  | Version 1 (Enhanced)                                    | Version 2 (Original)                           |
+| ----------------------- | ------------------------------------------------------- | ---------------------------------------------- |
+| Structural Segmentation | Clearly segmented with `# Arrange`, `# Act`, `# Assert` | Structure present but not explicitly segmented |
+| Intent Clarification    | Intent is explicitly described at the top               | Intent included but in docstring, less visible |
+| Function Naming         | Function names are self-explanatory                     | Function names are generic or templated        |
+| Comment Quality         | Short, clear, and targeted comments                     | Comments repeat code or are sparse             |
+| Assertion Grouping      | Assertions grouped logically under labels               | Assertions are loosely placed                  |
 
 However, for `test_queue_example.py`, the agent did not yield significant improvements in readability, likely due to the simple structure of the test or limited room for enhancement.
 
