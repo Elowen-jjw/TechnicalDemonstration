@@ -39,13 +39,17 @@ Run `agent_runner.py` with the parameters below, or directly use `overall.py` to
 ## Example Results:
 
 For `test_string_utils_validation.py`, we compare results from the original method and our extended agent-based version. The codes below show the same test case (`Version 1` = improved, `Version 2` = original):
+Version 1:
 <img width="1173" alt="image" src="https://github.com/user-attachments/assets/ca4f86d0-c3d0-4d8b-9866-bc2f57f42aef" />
 
+Version 2:
 <img width="1217" alt="image" src="https://github.com/user-attachments/assets/c38e7ec0-df31-4e3c-91d5-1f23af960f4c" />
 
 For `test_httpie_sessions.py`, the contrast is similarly shown:
+Version 1:
 <img width="1151" alt="image" src="https://github.com/user-attachments/assets/64788450-0d47-4594-9b77-18491a5f4589" />
 
+Version 2:
 <img width="978" alt="image" src="https://github.com/user-attachments/assets/abede99d-e7c1-4333-8766-59b7f64576b6" />
 
 The summary comparison is as follows:
