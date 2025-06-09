@@ -46,7 +46,7 @@ Run `agent_runner.py` with the parameters below, or directly use `overall.py` to
 
 ## Example Results:
 
-# test_string_utils_validation.py
+### test_string_utils_validation.py
 For `test_string_utils_validation.py`, I compare results from the original method and my extended agent-based version. The codes below show the same test case (`Version 1` = improved, `Version 2` = original):
 
 Version 1:
@@ -55,7 +55,7 @@ Version 1:
 Version 2:
 <img width="1217" alt="image" src="https://github.com/user-attachments/assets/c38e7ec0-df31-4e3c-91d5-1f23af960f4c" />
 
-# test_httpie_sessions.py
+### test_httpie_sessions.py
 For `test_httpie_sessions.py`, the contrast is similarly shown:
 
 Version 1:
@@ -64,10 +64,10 @@ Version 1:
 Version 2:
 <img width="978" alt="image" src="https://github.com/user-attachments/assets/abede99d-e7c1-4333-8766-59b7f64576b6" />
 
-# test_queue_example.py
+### test_queue_example.py
 However, for `test_queue_example.py`, the agent did not yield significant improvements in readability, likely due to the simple structure of the test or limited room for enhancement.
 
-# The summary comparison is as follows:
+### The summary comparison is as follows:
 | Aspect                  | Version 1 (Enhanced)                                    | Version 2 (Original)                           |
 | ----------------------- | ------------------------------------------------------- | ---------------------------------------------- |
 | Structural Segmentation | Clearly segmented with `# Arrange`, `# Act`, `# Assert` | Structure present but not explicitly segmented |
