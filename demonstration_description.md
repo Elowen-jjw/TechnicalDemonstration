@@ -18,6 +18,7 @@ A key contribution of my implementation is the incorporation of semantic informa
 ## Transformation Procedure
 I adopt a similar iterative strategy: each transformation step rewrites the test, and its result feeds into the next stage in the sequence.
 > 🔁 Apply prompts → Regenerate test file → Extract new test cases → Apply next prompt
+
 All transformations are defined in `prompts/all_changes.txt`, where each block (separated by blank lines) corresponds to a specific transformation.
 The following transformations are applied in order:
 - Literal Extraction: Extracting repeated literals or magic values into named constants.
