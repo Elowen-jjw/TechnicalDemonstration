@@ -8,15 +8,15 @@ This repository includes:
 - some notes of transformations that didn’t work as expected
 - a new idea inspired by the professor’s original approach
 
-I built an **automated agent** that replicates and extends the method from Improving Test Code Readability with LLMs. While the original method involves manual prompt engineering in ChatGPT, my version automates the full process using the OpenAI API (GPT-4o), making the workflow entirely hands-free.
+In this work, I built an **automated agent** that replicates and extends the method from Improving Test Code Readability with LLMs. Unlike the original approach that required manual prompting in ChatGPT, my version uses the OpenAI API (GPT-4o) to run the entire process automatically.
 
-Due to limitations with OpenAI API's file upload capabilities, I send code files as strings. Interestingly, string-based input via API proved more stable and precise than directly pasting code into the ChatGPT interface.
+Since the OpenAI API does not support file uploads, I convert code into strings before sending it. Surprisingly, this approach turned out to be more reliable than using the ChatGPT interface directly.
 
 ## Semantic Extension
-A key contribution of my implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `prompts/semantic_analysis_mut.txt`. With this extra guidance, the model tends to generate clearer function and variable names, stick to a consistent style, and avoid vague or inappropriate labels. For now, this semantic information is passed in plain text—but it could later be replaced with structured data from static analysis tools.
+A key contribution of my implementation is the incorporation of semantic information about the module under test—such as control flow, data flow, statement purposes, and variable types and roles—via an additional prompt file `prompts/semantic_analysis_mut.txt`. This additional input helps the model produce cleaner names, follow consistent conventions, and avoid unclear labels. At this stage, the semantic information is written manually in plain text to reflect the kinds of details that should be considered. In the future, this part can be replaced with output automatically extracted using static analysis tools.
 
 ## Transformation Procedure
-My prompting strategy follows the same iterative design as the original work. I apply a sequence of prompt-based transformations to unit tests, one step at a time. The output from each transformation serves as the input for the next:
+I adopt a similar iterative strategy: each transformation step rewrites the test, and its result feeds into the next stage in the sequence.
 > 🔁 Apply prompts → Regenerate test file → Extract new test cases → Apply next prompt
 All transformations are defined in `prompts/all_changes.txt`, where each block (separated by blank lines) corresponds to a specific transformation.
 The following transformations are applied in order:
